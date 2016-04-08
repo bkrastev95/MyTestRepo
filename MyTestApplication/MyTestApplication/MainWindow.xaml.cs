@@ -24,5 +24,7 @@ namespace MyTestApplication
         {
             InitializeComponent();
         }
+
+        // This is a test comment
     }
 }
