@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyTestApplication.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,6 +26,17 @@ namespace MyTestApplication
             InitializeComponent();
         }
 
-        // This is a test comment
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            using (var ctx = new MyContext())
+            {
+                var car = new Car { BrandId = 1, CarTypeId = 1, ColorId = 2, RegNumber = "test" };
+                ctx.Cars.Add(car);
+                ctx.SaveChanges();
+
+                var numbers = from c in ctx.Cars select c.RegNumber;
+                myButton.Content = numbers.FirstOrDefault<string>();
+            }
+        }
     }
 }
